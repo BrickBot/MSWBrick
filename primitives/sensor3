@@ -1,0 +1,3 @@
+to Sensor3
+   make "Sensor3Value dllcall [w Sensor3Value v 0]
+end

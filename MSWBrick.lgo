@@ -1,0 +1,133 @@
+
+to Load_DLL
+   ; Loads the DLL. Turns on the port and sets Motor speeds to full power.
+   ; March 20th 2003
+   dllload "mswbrick.dll
+   dllcall[v TurnPortOn v 0]
+   wait 30
+   ; Small delay to allow the Tower to communicate.
+   dllcall[v MotorAForward v 0]
+   dllcall[v MotorBForward v 0]
+   dllcall[v MotorCForward v 0]
+end
+
+to mswbrick
+   ; This software is based on the work of Daniel Berger
+   ; See: http://www.kyb.tuebingen.mpg.de/bu/people/berger/mindstorms.html
+   ;
+   ; This software is provided without guarantees of any kind.
+   ; Under some conditions, your system may lock up. Make sure all relevant
+   ; work has been saved before running this software.
+   ;
+   ; The software has been tested with Win98. It may not work with Win95.
+   ;
+   make "MyLabel [MSW Brick Demonstration program by J Fuller, March 2003]
+   make "InValue1 [0]
+   make "InValue2 [0]
+   make "InValue3 [0]
+   windowcreate "main "mywindow :MyLabel 10 0 350 240 []
+
+   ; Creates a sub-window defined by :MyLabel
+   ; NOTE: You can remove this window on closing with a 
+   ; <windodelete "mywindow> command.
+   ; NOTE - The empty "[]" is a left/right square bracket. It is essential!
+
+   groupboxcreate "mywindow [Frame] 10 10 325 210
+
+   groupboxcreate "mywindow [Notes] 150 80 160 80
+   staticcreate "mywindow "mystaticNotes1 [1. Press the "Load DLL" button first.] 160 100 130 10
+   staticcreate "mywindow "mystaticNotes2 [2. Press "Unload DLL" before closing.] 160 130 140 10
+
+   ; Draws the rectangle around the button section
+   ; NOTE: Screen co-ordinates are: x1, y1, x2, y2  (ie Horiz, Vert)
+
+   buttoncreate "mywindow "Line1 "* 25 20 10 10 [Load_DLL]
+
+   buttoncreate "mywindow "Line2 "A 25 40 10 10 [dllcall[v MotorAOn v 0]]
+   buttoncreate "mywindow "Line3 "A 25 52 10 10 [dllcall[v MotorAOff v 0]]
+   buttoncreate "mywindow "Line4 "A 25 64 10 10 [dllcall[v MotorAForward v 0]]
+   buttoncreate "mywindow "Line5 "A 25 76 10 10 [dllcall[v MotorAReverse v 0]]
+
+   buttoncreate "mywindow "Line6 "B 25 90 10 10 [dllcall[v MotorBOn v 0]]
+   buttoncreate "mywindow "Line7 "B 25 102 10 10 [dllcall[v MotorBOff v 0]]
+   buttoncreate "mywindow "Line8 "B 25 114 10 10 [dllcall[v MotorBForward v 0]]
+   buttoncreate "mywindow "Line9 "B 25 126 10 10 [dllcall[v MotorBReverse v 0]]
+
+   buttoncreate "mywindow "Line10 "C 25 140 10 10 [dllcall[v MotorCOn v 0]]
+   buttoncreate "mywindow "Line11 "C 25 152 10 10 [dllcall[v MotorCOff v 0]]
+   buttoncreate "mywindow "Line12 "C 25 164 10 10 [dllcall[v MotorCForward v 0]]
+   buttoncreate "mywindow "Line13 "C 25 176 10 10 [dllcall[v MotorCReverse v 0]]
+
+   buttoncreate "mywindow "Line14 "* 25 200 10 10 [UnLoad_DLL]
+
+   buttoncreate "mywindow "Line15 "1 150 20 10 10 [ReadSensor1]
+   buttoncreate "mywindow "Line16 "2 150 40 10 10 [ReadSensor2]
+   buttoncreate "mywindow "Line17 "3 150 60 10 10 [ReadSensor3]
+
+   buttoncreate "mywindow "Line18 :InValue1 250 20 30 10 []
+   buttoncreate "mywindow "Line19 :InValue2 250 40 30 10 []
+   buttoncreate "mywindow "Line20 :InValue3 250 60 30 10 []
+
+  
+
+
+   buttoncreate "mywindow "Close "Close 265 205 50 10 [windowdelete "mywindow]
+
+   ; This line closes the sub-window opened in the first line.
+
+   staticcreate "mywindow "mystatic1 [Load DLL] 45 20 80 10
+
+   staticcreate "mywindow "mystatic2 [Motor A On] 45 40 80 10
+   staticcreate "mywindow "mystatic3 [Motor A Off] 45 52 80 10
+   staticcreate "mywindow "mystatic4 [Motor A Forward] 45 64 80 10
+   staticcreate "mywindow "mystatic5 [Motor A Reverse] 45 76 80 10
+
+   staticcreate "mywindow "mystatic6 [Motor B On] 45 90 80 10
+   staticcreate "mywindow "mystatic7 [Motor B Off] 45 102 80 10
+   staticcreate "mywindow "mystatic8 [Motor B Forward] 45 114 80 10
+   staticcreate "mywindow "mystatic9 [Motor B Reverse] 45 126 80 10
+
+   staticcreate "mywindow "mystatic10 [Motor C On] 45 140 80 10
+   staticcreate "mywindow "mystatic11 [Motor C Off] 45 152 80 10
+   staticcreate "mywindow "mystatic12 [Motor C Forward] 45 164 80 10
+   staticcreate "mywindow "mystatic13 [Motor C Reverse] 45 176 80 10
+
+   staticcreate "mywindow "mystatic14 [Unload DLL] 45 200 80 10
+
+   staticcreate "mywindow "mystatic15 [Read Sensor 1] 170 20 80 10
+   staticcreate "mywindow "mystatic16 [Read Sensor 2] 170 40 80 10
+   staticcreate "mywindow "mystatic17 [Read Sensor 3] 170 60 80 10
+
+
+   ; These lines create sub-windows in mywindow and
+   ; write the text contained between the square brackets.
+
+   ; NOTE: Make sure the sub-window is large enough to
+   ; hold all the text, or it will simply disappear!
+ 
+end
+
+to ReadSensor1
+   dllcall [v Sensor1On v 0]
+   make "InValue1 dllcall [w Sensor1Value v 0]
+   buttonupdate "Line18 :InValue1
+end
+
+to ReadSensor2
+   dllcall [v Sensor2On v 0]
+   make "InValue2 dllcall [w Sensor2Value v 0]
+   buttonupdate "Line19 :InValue2
+end
+
+to ReadSensor3
+   dllcall [v Sensor3On v 0]
+   make "InValue3 dllcall [w Sensor3Value v 0]
+   buttonupdate "Line20 :InValue3
+end
+
+to Unload_DLL
+   dllcall[v TurnPortOff v 0]
+   wait 30
+   ; Small delay to allow the Tower to communicate.
+   dllfree
+end

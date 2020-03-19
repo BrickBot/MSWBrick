@@ -1,0 +1,3 @@
+to MotorAOn
+   dllcall[v MotorAOn v 0]
+end

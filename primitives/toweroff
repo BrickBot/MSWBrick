@@ -1,0 +1,4 @@
+to TowerOff
+   dllcall[v TurnPortOff v 0]
+   dllfree
+end

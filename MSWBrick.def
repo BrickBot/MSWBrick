@@ -1,0 +1,29 @@
+// 25th March 2003
+
+LIBRARY MSWBRICK
+DESCRIPTION
+
+EXPORTS
+TurnPortOn                @1 TurnPortOn
+TurnPortOff                @2 TurnPortOff
+MotorAForward         @3 MotorAForward
+MotorAReverse         @4 MotorAReverse
+MotorBForward         @5 MotorBForward
+MotorBReverse         @6 MotorBReverse
+MotorCForward         @7 MotorCForward
+MotorCReverse         @8 MotorCReverse 
+MotorAOn                   @9 MotorAOn 
+MotorBOn                   @10 MotorBOn 
+MotorCOn                   @11 MotorCOn 
+MotorAOff                   @12 MotorAOff
+MotorBOff                   @13 MotorBOff
+MotorCOff                   @14 MotorCOff
+Sensor1On                 @15 Sensor1On
+Sensor1Off                 @16 Sensor1Off
+Sensor1Value            @17 Sensor1Value
+Sensor2On                 @18 Sensor2On
+Sensor2Off                 @19 Sensor2Off
+Sensor2Value            @20 Sensor2Value
+Sensor3On                 @21 Sensor3On
+Sensor3Off                 @22 Sensor3Off
+Sensor3Value            @23 Sensor3Value

@@ -1,0 +1,4 @@
+to TowerOn
+   dllload "mswbrick.dll
+   dllcall[v TurnPortOn v 0]
+end

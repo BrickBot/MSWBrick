@@ -1,0 +1,3 @@
+to Sensor3On
+   dllcall [v Sensor3On v 0]
+end
